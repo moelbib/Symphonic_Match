@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: utilisateur-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: utilisateur-db
+  template:
+    metadata:
+      labels:
+        app: utilisateur-db
+    spec:
+      containers:
+        - name: utilisateur-db
+          image: utilisateurdb:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MARIADB_ROOT_PASSWORD
+              value: "admin"
+          ports:
+            - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: utilisateur-db
+spec:
+  selector:
+    app: utilisateur-db
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306

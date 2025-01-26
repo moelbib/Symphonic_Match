@@ -1,0 +1,25 @@
+FROM node:14
+
+WORKDIR /app
+
+COPY package*.json ./
+
+# Installer les dépendances nécessaires
+RUN apt-get update && apt-get install -y curl kafkacat && rm -rf /var/lib/apt/lists/*
+
+# Installer les dépendances Node.js
+RUN npm install
+RUN npm install @graphql-tools/merge@latest @graphql-tools/mock@latest kafkajs
+RUN npm install mysql2
+
+COPY . .
+
+ENV PORT=8007
+ENV KAFKA_MESSAGE_MAX_BYTES=200000000
+ENV KAFKA_FETCH_MAX_BYTES=200000000
+
+# Copier le script wait-for.sh
+COPY wait-for.sh /usr/local/bin/wait-for.sh
+RUN chmod +x /usr/local/bin/wait-for.sh
+
+CMD ["wait-for.sh", "kafka", "node", "src/main.js"]

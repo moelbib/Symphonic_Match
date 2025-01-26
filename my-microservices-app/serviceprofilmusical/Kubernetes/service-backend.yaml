@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: profilmusical-backend # Le nom unique du service.
+spec:
+  selector: # Les labels utilisés pour sélectionner les pods.
+    app: profilmusical-backend
+  ports:
+    - protocol: TCP
+      port: 8001 # Le port exposé par le service.
+      targetPort: 8001 # Le port sur lequel les pods écoutent.
+      nodePort: 32008
+  type: NodePort

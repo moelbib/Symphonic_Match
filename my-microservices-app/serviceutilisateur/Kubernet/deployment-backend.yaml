@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: utilisateur-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: utilisateur-backend
+  template:
+    metadata:
+      labels:
+        app: utilisateur-backend
+    spec:
+      containers:
+        - name: utilisateur-backend
+          image: backend:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              value: "8007"
+            - name: KAFKA_BROKER
+              value: "kafka:9092" # Update to match your Kafka service name and port
+            - name: DB_HOST
+              value: "utilisateur-db" # Update to match your MySQL service name
+            - name: DB_USER
+              value: "root" # Update to match your MySQL
+            - name: DB_PASSWORD
+              value: "admin" # Update to match your MySQL password
+            - name: KAFKA_MESSAGE_MAX_BYTES
+              value: "200000000"
+            - name: KAFKA_FETCH_MAX_BYTES
+              value: "200000000"
+          ports:
+            - containerPort: 8007
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: utilisateur-backend
+spec:
+  selector:
+    app: utilisateur-backend
+  ports:
+    - protocol: TCP
+      port: 8007
+      targetPort: 8007
+  type: LoadBalancer

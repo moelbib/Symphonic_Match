@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evenement-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: evenement-backend
+  template:
+    metadata:
+      labels:
+        app: evenement-backend
+    spec:
+      containers:
+        - name: evenement-backend
+          image: backendevenement:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              value: "32006"
+            - name: DB_HOST
+              value: "evenement-db"
+            - name: DB_USER
+              value: "root"
+            - name: DB_PASSWORD
+              value: "admin"
+            - name: DB_NAME
+              value: "evenement"
+            - name: KAFKA_BROKER
+              value: "kafka:9092"
+            - name: KAFKA_MESSAGE_MAX_BYTES
+              value: "200000000"
+            - name: KAFKA_FETCH_MAX_BYTES
+              value: "200000000"
+          ports:
+            - containerPort: 32006
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: evenement-backend
+spec:
+  selector:
+    app: evenement-backend
+  ports:
+    - protocol: TCP
+      port: 32006
+      targetPort: 32006
+      nodePort: 32006
+  type: NodePort

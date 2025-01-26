@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  eventdb:
+    build:
+      context: ./Database/
+      dockerfile: evenementdb
+    image: eventdb:latest
+    environment:
+      MYSQL_USER: root
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: evenement
+      MYSQL_ROOT_PASSWORD: admin
+    restart: always
+    volumes:
+      - event-db-data:/var/lib/mysql
+    ports:
+      - '1021:3306'
+    networks:
+      - app-network
+
+  eventbackend:
+    depends_on:
+      - eventdb
+    build:
+      dockerfile: DockerFile.ServiceEvenements
+    image: "eventbackend:${API_VERSION:-latest}"
+    environment:
+      DATABASE_HOST: eventdb
+      DATABASE_USER: root
+      DATABASE_PASSWORD: admin
+      DATABASE_NAME: evenement
+    ports:
+      - '8010:8080'
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  event-db-data:

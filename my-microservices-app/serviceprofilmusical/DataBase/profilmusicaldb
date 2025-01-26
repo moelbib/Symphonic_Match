@@ -1,0 +1,5 @@
+From mariadb:latest
+
+ENV MARIADB_ROOT_PASSWORD=admin
+
+COPY DataBase/db.sql /docker-entrypoint-initdb.d/01.data.sql

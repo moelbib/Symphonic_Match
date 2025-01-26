@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profilmusical-backend   # Le nom unique du déploiement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profilmusical-backend #Les labels utilisés pour sélectionner les pods.
+  template:
+    metadata:
+      labels: # Les labels assignés aux pods.
+        app: profilmusical-backend
+    spec:
+      containers:
+        - name: profilmusical-backend # Le nom du conteneur.
+          image: backendprofilmusical:latest  #  L'image Docker du conteneur.
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              value: "8001"
+            - name: KAFKA_MESSAGE_MAX_BYTES
+              value: "200000000"
+            - name: KAFKA_FETCH_MAX_BYTES
+              value: "200000000"
+          ports:
+            - containerPort: 8007 # Le port sur lequel le conteneur écoute.
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: profilmusical-backend
+spec:
+  selector:
+    app: profilmusical-backend
+  ports:
+    - protocol: TCP
+      port: 8001
+      targetPort: 8001

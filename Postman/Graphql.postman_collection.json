@@ -1,0 +1,490 @@
+{
+	"info": {
+		"_postman_id": "1b4a36a0-dbd4-4fb2-bb24-eaa37e1c12bb",
+		"name": "Graphql",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32693740"
+	},
+	"item": [
+		{
+			"name": "insertProfilMusical",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"mutation { createProfilMusical(id_utilisateur: 1, genre_favoris: \\\"RAP\\\", artistes_favoris: \\\"Soolking\\\", chansons_favoris: \\\"Milano\\\") { id id_utilisateur genre_favoris artistes_favoris chansons_favoris id_commentaire } }\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32008/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32008",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteProfilMusical",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"mutation { deleteProfilMusical(id_utilisateur: 1) }\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32008/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32008",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProfilMusical",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"mutation { updateProfilMusical(id_utilisateur: 1, genre_favoris: \\\"Rap\\\", artistes_favoris: \\\"Soolking\\\", chansons_favoris: \\\"Grilla\\\") { id id_utilisateur genre_favoris artistes_favoris chansons_favoris id_commentaire } }\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32008/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32008",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProfilMusical",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"{ profilMusical(id_utilisateur: 1) { id id_utilisateur genre_favoris artistes_favoris chansons_favoris id_commentaire } }\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32008/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32008",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insertUtilisateur",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"mutation { createUtilisateur(genre: \\\"F\\\", nom: \\\"Alice\\\", prenom: \\\"Dupont\\\", email: \\\"alice@example.com\\\", bio: \\\"Music enthusiast\\\", localisation: \\\"Paris\\\") { id genre nom prenom email bio date_inscription localisation } }\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32007/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32007",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUtilisateur",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"{ utilisateur(id: 1) { id genre nom prenom email bio date_inscription localisation } }\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32007/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32007",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUtilisateur",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"mutation { deleteUtilisateur(id: 1) { id genre nom prenom email bio date_inscription localisation } }\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32007/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32007",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllUtisateurs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": \"{ utilisateurs { id genre nom prenom email bio date_inscription localisation } }\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32007/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32007",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create evenement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  creerEvenement(nom: \"Concert\", date: \"2024-12-01\", localisation: \"Paris\", description: \"Concert de fin d'année\") {\n    id_evenement\n    nom\n    date\n    localisation\n    description\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32006/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32006",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "inscrire à un evenement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  inscrireEvenement(id_utilisateur: \"1\", id_evenement: \"1\") {\n    id_participation\n    id_utilisateur\n    id_evenement\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32006/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32006",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "desinscrireEvenement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  desinscrireEvenement(id_participation: \"1\")\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32006/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32006",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete evenment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n  supprimerEvenement(id_evenement: \"1\")\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32006/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32006",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEvenements",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  evenements {\n    id_evenement\n    nom\n    date\n    localisation\n    description\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32006/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32006",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetParticipants",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  participations {\n    id_participation\n    id_utilisateur\n    id_evenement\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32006/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32006",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPArticipantByID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  participation(id_participation: \"3\") {\n    id_participation\n    id_utilisateur\n    id_evenement\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32006/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32006",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEvenementByID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\n  evenement(id_evenement: \"2\") {\n    id_evenement\n    nom\n    date\n    localisation\n    description\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://192.168.67.2:32006/graphql",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"67",
+						"2"
+					],
+					"port": "32006",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

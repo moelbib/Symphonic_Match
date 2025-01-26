@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evenement-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: evenement-db
+  template:
+    metadata:
+      labels:
+        app: evenement-db
+    spec:
+      containers:
+        - name: evenement-db
+          image: evenementdb:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MARIADB_ROOT_PASSWORD
+              value: "admin"
+          ports:
+            - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: evenement-db
+spec:
+  selector:
+    app: evenement-db
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP

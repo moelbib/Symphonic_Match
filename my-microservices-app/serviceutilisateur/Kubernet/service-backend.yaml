@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: utilisateur-backend
+spec:
+  selector:
+    app: utilisateur-backend
+  ports:
+    - protocol: TCP
+      port: 8007
+      targetPort: 8007
+      nodePort: 32007
+  type: NodePort

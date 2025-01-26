@@ -1,0 +1,23 @@
+FROM node:14
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN apt-get update && apt-get install -y curl kafkacat && rm -rf /var/lib/apt/lists/*
+RUN npm install
+RUN npm install @graphql-tools/merge@latest @graphql-tools/mock@latest kafkajs
+RUN npm install mysql2
+RUN npm install axios
+
+
+COPY . .
+
+ENV PORT=8001
+ENV KAFKA_MESSAGE_MAX_BYTES=200000000
+ENV KAFKA_FETCH_MAX_BYTES=200000000
+
+COPY wait-for.sh /usr/local/bin/wait-for.sh
+RUN chmod +x /usr/local/bin/wait-for.sh
+
+CMD ["wait-for.sh", "kafka", "node", "src/main.js"]
